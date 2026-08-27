@@ -18,8 +18,9 @@ A modern, high-converting website template engineered for high-ticket home servi
 
 ## 🚀 Live Demos & Deployments
 
-- **Vercel Production**: [Live on Vercel](#)
-- **Netlify Production**: [Live on Netlify](#)
+- **⚡ Vercel Production**: [https://redman-pours-concrete.vercel.app](https://redman-pours-concrete.vercel.app)
+- **🌐 Netlify Production**: [https://redman-pours-concrete.netlify.app](https://redman-pours-concrete.netlify.app)
+- **📦 GitHub Template Repo**: [https://github.com/trajikk/redman-pours-concrete-template](https://github.com/trajikk/redman-pours-concrete-template)
 
 ---
 
