@@ -349,4 +349,128 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4500);
   }
 
+
+  // --- 8. MERGED 2026-11-17 — ported from Concrete-Template-2 & -3 ---
+
+  // 8a. Preloader / counter intro (Template-2: #preloader, #counter, #progress).
+  // Vanilla replacement for the GSAP timeline — no GSAP in this codebase.
+  (function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    const counterEl = document.getElementById('counter');
+    const progressEl = document.getElementById('progress');
+    if (!preloader || !counterEl || !progressEl) return;
+    let count = 0;
+    const interval = setInterval(() => {
+      count += Math.floor(Math.random() * 4) + 1;
+      if (count > 100) count = 100;
+      counterEl.textContent = count;
+      progressEl.style.width = count + '%';
+      if (count === 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          preloader.classList.add('done');
+          setTimeout(() => preloader.remove(), 1000);
+        }, 250);
+      }
+    }, 40);
+  })();
+
+  // 8b. Horizontal gallery drag-to-scroll + arrow buttons (Template-2: #horizontal).
+  // Vanilla scroll-snap replacement for the GSAP pin/scrub horizontal scroll.
+  (function initHorizontalGallery() {
+    const track = document.getElementById('hTrack');
+    if (!track) return;
+    let isDown = false, startX = 0, startScroll = 0;
+    track.addEventListener('mousedown', (e) => {
+      isDown = true; startX = e.pageX; startScroll = track.scrollLeft;
+      track.classList.add('dragging');
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      track.scrollLeft = startScroll - (e.pageX - startX);
+    });
+    window.addEventListener('mouseup', () => { isDown = false; track.classList.remove('dragging'); });
+    const step = () => Math.min(560, track.clientWidth * 0.8);
+    const prev = document.getElementById('hPrev');
+    const next = document.getElementById('hNext');
+    if (prev) prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+    if (next) next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+  })();
+
+  // 8c. FAQ accordion (Template-3: [data-accordion] / .faq-item).
+  document.querySelectorAll('[data-accordion]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const item = button.closest('.faq-item');
+      if (!item) return;
+      const isOpen = item.classList.toggle('open');
+      button.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  // 8d. Voice concierge — Template-3 richer live-transcript version
+  // (toggleVoice / quickAsk / simulateVoice; supersedes Template-2's simpler Mira panel).
+  const voicePairs = [
+    { user: 'I have about 1,200 square feet of driveway to replace.',
+      ai: 'Perfect. For 1,200 square feet, I would ask about demo depth, drainage slope, finish type, reinforcement, and whether the driveway needs a heated snow-melt system.' },
+    { user: 'I want stamped concrete for a backyard patio.',
+      ai: 'Stamped patios are a strong premium option. I would recommend choosing texture, color, border pattern, sealer type, and checking slope away from the home.' },
+    { user: 'Can you quote commercial sidewalk replacement?',
+      ai: 'Yes. Commercial flatwork usually needs site access details, ADA requirements, pour timing, traffic control, city compliance, and square footage.' }
+  ];
+  let voiceIndex = 0;
+  let voiceListening = false;
+
+  function addVoiceBubble(message, sender) {
+    const transcript = document.getElementById('voiceTranscript');
+    if (!transcript) return;
+    const row = document.createElement('div');
+    row.className = sender === 'user' ? 'voice-row voice-row-user' : 'voice-row';
+    const bubble = document.createElement('div');
+    bubble.className = sender === 'user' ? 'voice-bubble-user' : 'voice-bubble-ai';
+    bubble.textContent = message;
+    row.appendChild(bubble);
+    transcript.appendChild(row);
+    transcript.scrollTop = transcript.scrollHeight;
+  }
+
+  window.toggleVoice = function () {
+    const panel = document.getElementById('voicePanel');
+    const icon = document.getElementById('voiceIcon');
+    if (!panel) return;
+    panel.classList.toggle('active');
+    if (icon) icon.textContent = panel.classList.contains('active') ? '\u2715' : '\uD83C\uDF99';
+  };
+
+  window.quickAsk = function (topic) {
+    addVoiceBubble(topic, 'user');
+    let reply = 'Great. I can help qualify that. I would collect square footage, access, demo requirements, finish level, budget, timeline, and Colorado Springs-area location.';
+    const t = topic.toLowerCase();
+    if (t.includes('driveway')) {
+      reply = 'For a driveway, I\'ll need approximate square footage, current condition, slope/drainage issues, preferred finish, and whether you want a heated snow-melt system.';
+    } else if (t.includes('stamped')) {
+      reply = 'For stamped concrete, I\'ll ask about texture, color, border details, patio size, sealing preference, and whether there is existing concrete to remove.';
+    } else if (t.includes('commercial')) {
+      reply = 'For commercial flatwork, I\'ll need square footage, ADA requirements, traffic control needs, business hours, access, and whether permits are involved.';
+    }
+    setTimeout(() => addVoiceBubble(reply, 'ai'), 650);
+  };
+
+  window.simulateVoice = function () {
+    const button = document.getElementById('voiceAction');
+    const status = document.getElementById('voiceStatus');
+    if (!button || !status || voiceListening) return;
+    voiceListening = true;
+    status.textContent = 'Listening... capturing project details.';
+    button.textContent = 'Listening...';
+    const pair = voicePairs[voiceIndex % voicePairs.length];
+    setTimeout(() => addVoiceBubble(pair.user, 'user'), 800);
+    setTimeout(() => {
+      addVoiceBubble(pair.ai, 'ai');
+      status.textContent = 'Ready to simulate another voice estimate.';
+      button.innerHTML = '&#127908; Tap To Speak';
+      voiceListening = false;
+      voiceIndex++;
+    }, 2100);
+  };
+
 });
