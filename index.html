@@ -22,6 +22,15 @@
 </head>
 <body>
 
+  <!-- Preloader / Counter Intro — ported from Concrete-Template-2 (MONOLITH motion treatment), rebranded -->
+  <div id="preloader" aria-hidden="true">
+    <div class="preloader-inner">
+      <div class="preloader-counter"><span id="counter">0</span>%</div>
+      <div class="preloader-label">Red Man Pours Concrete — Colorado Springs</div>
+      <div class="preloader-bar"><div id="progress"></div></div>
+    </div>
+  </div>
+
   <!-- Top Emergency / Direct Dispatch Bar -->
   <div class="top-bar">
     <div class="container top-bar-inner">
@@ -51,11 +60,14 @@
 
       <nav class="nav-links" id="navMenu">
         <a href="#portfolio">Recent Pours</a>
+        <a href="#horizontal">Selected Pours</a>
         <a href="#transformations">Before & After</a>
         <a href="#services">Specialty Finishes</a>
         <a href="#engineering">Engineering Standard</a>
         <a href="#calculator">Cost Calculator</a>
         <a href="#heritage">Heritage & Craft</a>
+        <a href="#process">Our Process</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -337,6 +349,50 @@
     </div>
   </section>
 
+  <!-- Horizontal-Scroll Selected Pours Gallery — ported from Concrete-Template-2 (MONOLITH motion treatment).
+       Vanilla scroll-snap + drag (no GSAP/Lenis in this codebase). Reuses the keeper's own portfolio photos. -->
+  <section id="horizontal" class="horizontal-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">SELECTED POURS</div>
+        <h2>Selected Pours <span class="h-scroll-hint">Drag &rarr; Scroll</span></h2>
+        <p>Drag the gallery sideways — six signature Colorado Springs pours, straight from the portfolio.</p>
+      </div>
+    </div>
+    <div class="h-track-wrap">
+      <div class="h-track" id="hTrack">
+        <article class="h-panel">
+          <img src="images/project_stamped_patio.jpg" alt="Artisan Stamped Concrete Patio with Curved Stone Seating Bench and Fire Bowl in Colorado Springs">
+          <div class="h-panel-caption"><span class="h-panel-meta">Colorado Springs &mdash; 780 sq ft</span><h3>Ashlar Slate Patio &amp; Curved Seating Wall</h3></div>
+        </article>
+        <article class="h-panel">
+          <img src="images/project_driveway.jpg" alt="Executive Stamped Concrete Driveway with Cobblestone Border and Roman Slate Field in Monument CO">
+          <div class="h-panel-caption"><span class="h-panel-meta">Monument &mdash; 1,450 sq ft</span><h3>Executive Cobblestone &amp; Slate Driveway</h3></div>
+        </article>
+        <article class="h-panel">
+          <img src="images/project_floating_steps.jpg" alt="Modern Cantilevered Floating Concrete Steps with Integrated LED Lighting and Board-Formed Wall">
+          <div class="h-panel-caption"><span class="h-panel-meta">Colorado Springs &mdash; Board-Formed</span><h3>Cantilevered Floating Steps &amp; Board-Formed Wall</h3></div>
+        </article>
+        <article class="h-panel">
+          <img src="images/project_outdoor_kitchen.jpg" alt="Luxury Outdoor Kitchen with Cast-In-Place Concrete Countertops, Pizza Oven and Stamped Floor">
+          <div class="h-panel-caption"><span class="h-panel-meta">Colorado Springs &mdash; Outdoor Living</span><h3>Cast Concrete Kitchen &amp; Pergola Entertainment Deck</h3></div>
+        </article>
+        <article class="h-panel">
+          <img src="images/project_garage_epoxy.jpg" alt="Luxury Executive Garage Showroom with Mirror-Finish Polished Metallic Epoxy Concrete Floor">
+          <div class="h-panel-caption"><span class="h-panel-meta">Colorado Springs &mdash; 15-Year Warranty</span><h3>Executive Showroom Garage Coating</h3></div>
+        </article>
+        <article class="h-panel">
+          <img src="images/hero_patio.jpg" alt="Expansive Mountain Stamped Concrete Living Area at Dusk with Linear Gas Fireplace in Colorado">
+          <div class="h-panel-caption"><span class="h-panel-meta">Colorado Springs &mdash; 1,100 sq ft</span><h3>Mountain Residence Stamped Slate Sanctuary</h3></div>
+        </article>
+      </div>
+      <div class="h-track-nav container">
+        <button type="button" class="h-nav-btn" id="hPrev" aria-label="Scroll gallery left">&larr;</button>
+        <button type="button" class="h-nav-btn" id="hNext" aria-label="Scroll gallery right">&rarr;</button>
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive Finishes & Textures Visualizer -->
   <section id="services" class="textures-section">
     <div class="container">
@@ -478,6 +534,30 @@
     </div>
   </section>
 
+  <!-- Why Premium Costs Less Long-Term — ported from Concrete-Template-3, rebranded to Red Man / Colorado Springs -->
+  <section id="value" class="value-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">PREMIUM POSITIONING</div>
+        <h2>Why premium concrete costs less long-term.</h2>
+        <p>This is the part of the bid most contractors never explain: the money is saved in the base, the mix, and the cure &mdash; the parts you never see after the pour.</p>
+      </div>
+      <div class="value-table-wrap">
+        <table class="value-table">
+          <thead>
+            <tr><th>Feature</th><th>Basic Pour</th><th>Red Man Premium System</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Sub-base preparation</strong></td><td>Often minimal or inconsistent</td><td>Excavation, aggregate depth, compaction verification</td></tr>
+            <tr><td><strong>Freeze-thaw durability</strong></td><td>Generic mix design</td><td>4,500 PSI air-entrained mix and Colorado-focused curing protocol</td></tr>
+            <tr><td><strong>Crack control</strong></td><td>Basic joints after pour</td><td>Pre-planned control joint layout and reinforcement review</td></tr>
+            <tr><td><strong>Client experience</strong></td><td>Loose estimates and inconsistent updates</td><td>Fixed-scope proposal, scheduling, photo updates, warranty handoff</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive Project Cost & Dimension Estimator -->
   <section id="calculator" class="calculator-section">
     <div class="container">
@@ -588,6 +668,44 @@
     </div>
   </section>
 
+  <!-- From First Call to Final Seal — ported from Concrete-Template-3, rebranded to Red Man / Colorado Springs -->
+  <section id="process" class="process-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">WHITE-GLOVE BUILD PROCESS</div>
+        <h2>From first call to final seal.</h2>
+        <p>Five steps, no surprises. You always know what happens next &mdash; and who is on your job.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <h3>Call &amp; Pre-Qualify</h3>
+          <p>Call (719) 213-5217 or ask Raven, our voice estimator, to capture scope, size, finish, budget, timeline, and location.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <h3>Site Evaluation</h3>
+          <p>We inspect access, drainage, slope, demo needs, soil, and project complexity &mdash; on site, in Colorado Springs, Monument, or Falcon.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <h3>Fixed Proposal</h3>
+          <p>Scope, materials, schedule, reinforcement, finish, and warranty are clearly defined &mdash; in writing, before we break ground.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <h3>Prep + Pour</h3>
+          <p>Our own crew handles demo, base, forming, reinforcement, pour, finish, and saw-cuts. The owner is on every pour.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">05</div>
+          <h3>Seal + Warranty</h3>
+          <p>Final walkthrough, care guide, sealer recommendation, and 10-year craft guarantee documentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Indigenous Heritage & Commitment Section -->
   <section id="heritage" class="heritage-section">
     <div class="container">
@@ -681,6 +799,55 @@
           <div class="testi-author">
             <strong>Elena G.</strong>
             <span>Flying Horse, Colorado Springs • Floating Steps & Retaining Wall</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ — ported from Concrete-Template-3 ("Answers that close better leads"), rebranded to Red Man / Colorado Springs -->
+  <section id="faq" class="faq-section">
+    <div class="container">
+      <div class="section-header text-center">
+        <div class="section-tag">CONCRETE FAQ</div>
+        <h2>Answers that close better leads.</h2>
+        <p>The four questions every Colorado Springs homeowner asks before they book &mdash; answered straight.</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button type="button" data-accordion class="faq-q" aria-expanded="false">
+            <span>How much does premium concrete cost in Colorado Springs?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p>Most premium residential concrete projects start around $8K&ndash;$15K and can range from $25K&ndash;$100K+ depending on square footage, demo, access, drainage, reinforcement, finish, heating, and sealing requirements. Use the estimator above for a ballpark on your exact size &mdash; then call (719) 213-5217 for a fixed proposal.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" data-accordion class="faq-q" aria-expanded="false">
+            <span>Do you install heated driveways?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p>Yes. Heated snow-melt systems can be added to qualifying driveway and walkway projects. They require additional planning for electrical/mechanical components, slab design, and long-term access &mdash; we scope that during the site evaluation.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" data-accordion class="faq-q" aria-expanded="false">
+            <span>How long does a concrete driveway take?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p>Many driveway replacements take 3&ndash;7 working days depending on demo, base prep, weather, curing, finish selection, and job complexity. Larger or decorative projects may require more time. Walk in 24 hours, drive in 7 days.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button type="button" data-accordion class="faq-q" aria-expanded="false">
+            <span>Why not just hire the cheapest concrete bid?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-body">
+            <p>Concrete is expensive to redo. Cheap bids often remove value from the parts you cannot see: excavation, base depth, compaction, drainage, reinforcement, joint layout, curing, sealing, and warranty support. That is exactly what our 5-layer freeze-thaw system covers.</p>
           </div>
         </div>
       </div>
@@ -848,6 +1015,48 @@
 
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer"></div>
+
+  <!-- AI Voice Estimator — ported from Concrete-Template-3 (richer live-transcript version; supersedes Template-2's simpler panel).
+       Rebranded: "Raven — AI Concrete Estimator" for Red Man Pours Concrete, Colorado Springs. Visual mockup only. -->
+  <div class="voice-widget">
+    <div id="voicePanel" class="voice-panel" role="dialog" aria-label="Raven voice estimator">
+      <div class="voice-panel-head">
+        <div class="voice-panel-id">
+          <div class="voice-avatar">🦅</div>
+          <div>
+            <div class="voice-name">Raven &mdash; AI Concrete Estimator</div>
+            <div class="voice-status-line"><span class="voice-dot"></span> Demo Voice Concierge</div>
+          </div>
+        </div>
+        <button type="button" onclick="toggleVoice()" class="voice-close" aria-label="Close voice panel">&times;</button>
+      </div>
+
+      <div id="voiceTranscript" class="voice-transcript">
+        <div class="voice-row"><div class="voice-bubble-ai">Hi, I&rsquo;m Raven. I can help estimate your concrete project. Are you pricing a driveway, patio, stamped finish, commercial slab, or repair?</div></div>
+        <div class="voice-row voice-row-user"><div class="voice-bubble-user">I need a new driveway in Colorado Springs.</div></div>
+        <div class="voice-row"><div class="voice-bubble-ai">Great. For a premium Colorado Springs driveway, I&rsquo;ll ask square footage, demo needs, finish type, drainage concerns, and whether you want a heated snow-melt system.</div></div>
+      </div>
+
+      <div class="voice-quick">
+        <button type="button" onclick="quickAsk('Driveway estimate')">Driveway</button>
+        <button type="button" onclick="quickAsk('Stamped patio estimate')">Stamped Patio</button>
+        <button type="button" onclick="quickAsk('Commercial flatwork quote')">Commercial</button>
+        <button type="button" onclick="quickAsk('Heated concrete driveway')">Heated Driveway</button>
+      </div>
+
+      <div class="voice-panel-foot">
+        <div class="voice-wave" aria-hidden="true"><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span><span class="wave-bar"></span></div>
+        <div id="voiceStatus" class="voice-status">Ready to simulate a voice estimate.</div>
+        <button type="button" id="voiceAction" onclick="simulateVoice()" class="btn btn-primary btn-block">&#127908; Tap To Speak</button>
+        <p class="voice-fineprint">Visual AI mockup only. Real voice requires Vapi, Retell AI, ElevenLabs, Twilio, or similar &mdash; or call (719) 213-5217 to talk to a human.</p>
+      </div>
+    </div>
+
+    <button type="button" onclick="toggleVoice()" class="voice-fab" aria-label="Talk to Raven voice estimator">
+      <span id="voiceIcon">&#127908;</span>
+    </button>
+    <span class="voice-fab-label">Talk to Raven</span>
+  </div>
 
   <!-- Scripts -->
   <script src="script.js"></script>
